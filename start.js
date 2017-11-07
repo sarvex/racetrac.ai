@@ -13,7 +13,7 @@ mongoose.connection.on(
 
 // Start our app!
 const app = require('./app');
-app.set('port', process.env.RACE_PORT);
+app.set('port', process.env.RACE);
 const server = app.listen(app.get('port'), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
