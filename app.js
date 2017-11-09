@@ -17,8 +17,8 @@ const errorHandlers = require('./handlers/errorHandlers');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files
-app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // serves up static files from the public folder.
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
+// Exposes a bunch of methods for validating data.
+// Used heavily on userController.validateRegister
 app.use(expressValidator());
 
 // populates req.cookies with any cookies that came along with the request
@@ -47,22 +48,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// // The flash middleware let's us use req.flash('error', 'Shit!'),
+// The flash middleware let's us use req.flash('error', 'Shit!'),
 // which will then pass that message to the next page the user requests
 app.use(flash());
 
 // pass variables to our templates + all requests
-app.use((req, res, next) => {
-  res.locals.h = helpers;
-  res.locals.flashes = req.flash();
-  res.locals.user = req.user || null;
-  res.locals.currentPath = req.path;
+app.use((request, response, next) => {
+  response.locals.h = helpers;
+  response.locals.flashes = request.flash();
+  response.locals.user = request.user || null;
+  response.locals.currentPath = request.path;
   next();
 });
 
 // promisify some callback based APIs
-app.use((req, res, next) => {
-  req.login = promisify(req.login, req);
+app.use((request, response, next) => {
+  request.login = promisify(request.login, request);
   next();
 });
 
