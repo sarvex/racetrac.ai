@@ -1,8 +1,9 @@
 const express = require('express');
+const aboutController = require('../controllers/aboutController');
 
 const router = express.Router();
 
 // Do work here
-router.get('/', (request, response) => { response.render('hello', { title: 'Chottu' }); });
+router.get('/', aboutController.homePage);
 
 module.exports = router;
