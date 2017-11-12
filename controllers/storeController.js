@@ -10,7 +10,30 @@ exports.addStore = (request, response) => {
 }
 
 exports.createStore = async (request, response) => {
-  const store = new Store(request.body);
-  await store.save();
-  response.redirect('/');
+  const store = await (new Store(request.body)).save();
+  request.flash('success', `Successfully created ${store.name}. Care to leave a review?`)
+  response.redirect(`/store/${store.slug}`);
+}
+
+exports.getStores = async (request, response) => {
+  // Query the database for all the stores
+  const stores = await Store.find();
+  response.render('stores', {title: 'Stores', stores: stores});
+}
+
+exports.editStore = async (request, response) => {
+  // Find the store the given the ID
+  const store = await store.findOne({_id: request.params.id});
+
+  // Confirm owner of the store
+  // TODO
+  // Render out the edit form
+  response.render('editStore', {title: `Edit ${store.name}`, store: store});
+}
+
+exports.updateStore = async (request, response) => {
+  const store = Store.findOneAndUpdate({ _id: request.params.id }, request.body, {
+    new: true, // return the new store instead of the old one
+    runValidators: true,
+  })
 }
