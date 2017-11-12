@@ -22,9 +22,9 @@ exports.icon = name => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = 'RaceTrac.AI';
 
 exports.menu = [
-  { slug: '/about', title: 'About', icon: 'store' },
-  { slug: '/investors', title: 'Investors', icon: 'tag' },
-  { slug: '/blog', title: 'Blog', icon: 'top' },
-  { slug: '/careers', title: 'Careers', icon: 'add' },
-  { slug: '/community', title: 'Community', icon: 'map' },
+  { slug: '/store', title: 'Store', icon: 'store' },
+  { slug: '/tag', title: 'Tag', icon: 'tag' },
+  { slug: '/top', title: 'Top', icon: 'top' },
+  { slug: '/add', title: 'Add', icon: 'add' },
+  { slug: '/map', title: 'Map', icon: 'map' },
 ];
