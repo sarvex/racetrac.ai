@@ -23,7 +23,7 @@ exports.getStores = async (request, response) => {
 
 exports.editStore = async (request, response) => {
   // Find the store the given the ID
-  const store = await store.findOne({_id: request.params.id});
+  const store = await Store.findOne({_id: request.params.id});
 
   // Confirm owner of the store
   // TODO
@@ -32,8 +32,10 @@ exports.editStore = async (request, response) => {
 }
 
 exports.updateStore = async (request, response) => {
-  const store = Store.findOneAndUpdate({ _id: request.params.id }, request.body, {
+  const store = await Store.findOneAndUpdate({ _id: request.params.id }, request.body, {
     new: true, // return the new store instead of the old one
     runValidators: true,
-  })
+  }).exec();
+  request.flash('success', `Sucessfully updated <strong>${store.name}</store>. <a href="/stores/${store.slug}">View Store</a>`);
+  response.redirect(`/stores/${store._id}/edit`);
 }
