@@ -28,7 +28,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
-    "faker": "^4.1.0",
+    "faker": "^6.0.0",
     "forever": "^0.15.3",
     "glob": "^7.1.2",
     "html-to-text": "^3.3.0",
