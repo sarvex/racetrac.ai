@@ -5,7 +5,7 @@
   "browserslist": "last 3 versions",
   "engines": {
     "node": "18.17.0",
-    "npm": "9.7.2"
+    "npm": "9.8.1"
   },
   "scripts": {
     "prod": "node ./start.js",
